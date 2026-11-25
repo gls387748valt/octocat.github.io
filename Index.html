@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog do Gabriel Lucio</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Tipografia padrao limpa sem fontes decorativas externas */
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #18181b;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+            background-size: 22px 22px;
+            color: #e4e4e7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        /* Barra superior com acento azul */
+        .barra-topo {
+            background-color: #111114 !important;
+            border-bottom: 3px solid #38bdf8;
+        }
+
+        .marca-grafite {
+            color: #ffffff !important;
+        }
+
+        .marca-grafite span {
+            color: #38bdf8;
+        }
+
+        .nav-link.active {
+            color: #38bdf8 !important;
+            font-weight: 600;
+        }
+
+        
+        .cartao-muro {
+            background-color: #222227;
+            border: 2px solid #09090b;
+            border-radius: 6px;
+            box-shadow: 4px 4px 0px #09090b;
+            color: #e4e4e7;
+        }
+
+        .cartao-muro .card-header {
+            background-color: #2a2a31;
+            border-bottom: 2px solid #09090b;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        
+        .tag-tec {
+            background-color: rgba(56, 189, 248, 0.16);
+            color: #7dd3fc;
+            border: 1px solid #38bdf8;
+        }
+
+        .tag-musica {
+            background-color: rgba(251, 146, 60, 0.16);
+            color: #fdba74;
+            border: 1px solid #fb923c;
+        }
+
+        .tag-rotina {
+            background-color: rgba(56, 189, 248, 0.16);
+            color: #7dd3fc;
+            border: 1px solid #38bdf8;
+        }
+
+        
+        .btn-spray {
+            background-color: #38bdf8;
+            color: #111114;
+            border: 2px solid #09090b;
+            box-shadow: 3px 3px 0px #09090b;
+            font-weight: 700;
+        }
+
+        .btn-spray:hover, .btn-spray:focus {
+            background-color: #7dd3fc;
+            color: #111114;
+            border-color: #09090b;
+        }
+
+        .btn-ciano {
+            background-color: #38bdf8;
+            color: #111114;
+            border: 2px solid #09090b;
+            box-shadow: 3px 3px 0px #09090b;
+            font-weight: 700;
+        }
+
+        .btn-ciano:hover, .btn-ciano:focus {
+            background-color: #7dd3fc;
+            color: #111114;
+            border-color: #09090b;
+        }
+
+        
+        .grupo-lista-muro .list-group-item {
+            background-color: #222227;
+            color: #e4e4e7;
+            border: 1px solid #3f3f46;
+        }
+
+        .grupo-lista-muro .list-group-item-action:hover,
+        .grupo-lista-muro .list-group-item-action:focus {
+            background-color: #2d2d35;
+            color: #ffffff;
+        }
+
+        .grupo-lista-muro .list-group-item.ativo-filtro {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border-color: #38bdf8;
+            font-weight: 700;
+        }
+
+        
+        .form-control, .form-select {
+            background-color: #18181b;
+            border: 1px solid #52525b;
+            color: #f4f4f5;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #18181b;
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.2);
+        }
+
+        .form-control::placeholder {
+            color: #a1a1aa;
+        }
+
+        
+        .marco-tempo {
+            border-left: 3px solid #fb923c;
+            padding-left: 14px;
+            margin-bottom: 16px;
+        }
+
+        .marco-tempo:last-child {
+            margin-bottom: 0;
+        }
+
+        
+        .faixa-item {
+            background-color: #18181b;
+            border: 1px solid #3f3f46;
+            border-left: 4px solid #fb923c;
+            border-radius: 5px;
+        }
+
+        
+        .foto-moldura {
+            background-color: #18181b;
+            border: 2px solid #09090b;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .foto-moldura img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+
+        
+        .link-rede {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background-color: #18181b;
+            border: 1px solid #3f3f46;
+            border-radius: 5px;
+            color: #e4e4e7;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: border-color 0.15s ease, color 0.15s ease;
+        }
+
+        .link-rede:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+
+        .avatar-iniciais {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background-color: #38bdf8;
+            color: #111114;
+            border: 2px solid #09090b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .texto-artigo p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #e4e4e7;
+        }
+
+        footer {
+            background-color: #111114;
+            border-top: 2px solid #27272a;
+            color: #a1a1aa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegacao Bootstrap 5 -->
+    <nav class="navbar navbar-expand-lg navbar-dark barra-topo sticky-top">
+        <div class="container">
+            <a class="navbar-brand marca-grafite" href="#" onclick="irParaSecao('inicio'); return false;">
+                GLS<span>VALT</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nav-inicio" href="#" onclick="irParaSecao('inicio'); return false;">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-historia" href="#" onclick="irParaSecao('historia'); return false;">História</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-musicas" href="#" onclick="irParaSecao('musicas'); return false;">Músicas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-fotos" href="#" onclick="irParaSecao('fotos'); return false;">Fotos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-novo" href="#" onclick="irParaSecao('novo'); return false;">Novo Post</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Layout de duas colunas (col-lg-8 e col-lg-4) -->
+    <main class="container my-4 flex-grow-1">
+        <div class="row g-4">
+
+            <!-- Coluna principal (8 colunas) -->
+            <div class="col-lg-8">
+
+                <!-- 1. INICIO: Feed de posts e filtro -->
+                <section id="view-inicio">
+                    <div id="aviso-filtro" class="alert alert-dark border-info d-none justify-content-between align-items-center mb-3" role="alert">
+                        <span>Filtrando por: <strong id="nome-filtro-ativo" class="text-info"></strong></span>
+                        <button type="button" class="btn btn-sm btn-outline-light" onclick="aplicarFiltro('Todos')">Mostrar tudo</button>
+                    </div>
+
+                    <div id="feed-posts" class="d-flex flex-column gap-4"></div>
+                </section>
+
+                <!-- 1B. LEITURA COMPLETA DO ARTIGO -->
+                <section id="view-leitura" class="d-none">
+                    <article class="card cartao-muro">
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <span id="artigo-badge" class="badge"></span>
+                                <small class="text-secondary" id="artigo-meta"></small>
+                            </div>
+                            <h1 class="h3 text-white mb-3" id="artigo-titulo"></h1>
+                            <div id="artigo-corpo" class="texto-artigo"></div>
+                            <hr class="border-secondary my-4">
+                            <button type="button" class="btn btn-outline-light btn-sm" onclick="irParaSecao('inicio')">&larr; Voltar aos posts</button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- 2. HISTORIA DO CRIADOR -->
+                <section id="view-historia" class="d-none">
+                    <div class="card cartao-muro">
+                        <div class="card-header">História do Criador</div>
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center gap-3 pb-3 mb-4 border-bottom border-secondary">
+                                <div class="avatar-iniciais">GS</div>
+                                <div>
+                                    <h2 class="h4 text-white mb-1">Gabriel Souza</h2>
+                                    <div class="small text-secondary">Estudante de Informática &bull; 17 anos &bull; Campinas, SP</div>
+                                </div>
+                            </div>
+
+                            <p class="mb-4">
+                                Montei este blog para juntar anotações das aulas, ideias de projetos simples em código, as músicas que escuto no dia a dia e algumas fotos da rotina. Nada muito complicado: a ideia é ter um lugar direto para registrar o que estou aprendendo.
+                            </p>
+
+                            <h3 class="h5 text-white mb-3">Como começou</h3>
+                            <div class="mb-4">
+                                <div class="marco-tempo">
+                                    <div class="fw-bold" style="color: #fb923c;">2022 &mdash; Curiosidade com hardware</div>
+                                    <p class="small mb-0 text-light">Abri um PC antigo com meu primo para limpar poeira e trocar pasta térmica. Deu um friozinho na barriga quando ligou de novo.</p>
+                                </div>
+                                <div class="marco-tempo">
+                                    <div class="fw-bold" style="color: #38bdf8;">2024 &mdash; Curso técnico e primeiros códigos</div>
+                                    <p class="small mb-0 text-light">Comecei a ver lógica, HTML, CSS e JavaScript. No começo errava bastante ponto e vírgula e seletor, mas fui pegando o jeito na prática.</p>
+                                </div>
+                                <div class="marco-tempo">
+                                    <div class="fw-bold" style="color: #38bdf8;">2026 &mdash; Projetos pessoais e este blog</div>
+                                    <p class="small mb-0 text-light">Criei esta página para treinar layout com Bootstrap, manipulação de tela com JavaScript e organização de conteúdo.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="h5 text-white mb-2">O que costumo mexer</h3>
+                            <p class="small text-secondary mb-0">
+                                HTML, CSS, JavaScript básico, montagem/manutenção de computadores, playlists de rap/rock nacional e fotos de rua.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. MUSICAS FAVORITAS -->
+                <section id="view-musicas" class="d-none">
+                    <div class="card cartao-muro">
+                        <div class="card-header">Músicas Favoritas</div>
+                        <div class="card-body p-4">
+                            <p class="small text-secondary mb-3">
+                                Algumas músicas que não saem da minha lista quando estou revisando matéria ou mexendo em código. Você também pode adicionar outras aqui embaixo.
+                            </p>
+
+                            <div id="lista-musicas" class="d-flex flex-column gap-2 mb-4"></div>
+
+                            <hr class="border-secondary my-4">
+                            <h3 class="h5 text-white mb-3">Adicionar música</h3>
+                            <form id="form-musica" novalidate>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="input-musica-titulo" class="form-label small">Nome da música</label>
+                                        <input type="text" class="form-control" id="input-musica-titulo" placeholder="Ex: Pra Ser Sincero" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="input-musica-artista" class="form-label small">Artista / Banda</label>
+                                        <input type="text" class="form-control" id="input-musica-artista" placeholder="Ex: Engenheiros do Hawaii" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="input-musica-nota" class="form-label small">Estilo ou momento (opcional)</label>
+                                        <input type="text" class="form-control" id="input-musica-nota" placeholder="Ex: Boa para ouvir voltando de ônibus">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-ciano btn-sm px-3">Salvar na lista</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. FOTOS -->
+                <section id="view-fotos" class="d-none">
+                    <div class="card cartao-muro">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Fotos</span>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="restaurarFotosPadrao()">Restaurar iniciais</button>
+                        </div>
+                        <div class="card-body p-4">
+                            <p class="small text-secondary mb-3">
+                                Registros simples de estudo, laboratório e passeios. Adicione novas fotos pelo arquivo do computador/celular ou por link e apague quando quiser.
+                            </p>
+
+                            <div class="row g-3 mb-4" id="galeria-fotos"></div>
+
+                            <hr class="border-secondary my-4">
+                            <h3 class="h5 text-white mb-3">Adicionar foto</h3>
+
+                            <div id="alerta-foto" class="alert alert-danger py-2 small d-none" role="alert">
+                                Selecione uma imagem do dispositivo ou informe o link (URL) da foto junto com uma legenda.
+                            </div>
+
+                            <form id="form-foto" novalidate>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="input-foto-arquivo" class="form-label small">Escolher arquivo de imagem</label>
+                                        <input type="file" class="form-control" id="input-foto-arquivo" accept="image/*">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="input-foto-url" class="form-label small">Ou colar URL da foto</label>
+                                        <input type="url" class="form-control" id="input-foto-url" placeholder="https://exemplo.com/foto.jpg">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="input-foto-legenda" class="form-label small">Legenda da foto</label>
+                                        <input type="text" class="form-control" id="input-foto-legenda" placeholder="Ex: Projeto rodando no laboratório" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-ciano btn-sm px-3">Adicionar à galeria</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. NOVO POST -->
+                <section id="view-novo" class="d-none">
+                    <div class="card cartao-muro">
+                        <div class="card-header">Novo Post</div>
+                        <div class="card-body p-4">
+                            <div id="alerta-post" class="alert alert-danger py-2 small d-none" role="alert">
+                                Preencha o título, o resumo e o texto do post antes de publicar.
+                            </div>
+
+                            <form id="form-novo-post" novalidate>
+                                <div class="mb-3">
+                                    <label for="post-titulo" class="form-label small">Título</label>
+                                    <input type="text" class="form-control" id="post-titulo" placeholder="Ex: Dica rápida de CSS para centralizar">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="post-categoria" class="form-label small">Categoria</label>
+                                    <select class="form-select" id="post-categoria">
+                                        <option value="Tecnologia">Tecnologia</option>
+                                        <option value="Música">Música</option>
+                                        <option value="Rotina">Rotina</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="post-resumo" class="form-label small">Resumo curto</label>
+                                    <input type="text" class="form-control" id="post-resumo" placeholder="Uma frase curta sobre o assunto">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="post-conteudo" class="form-label small">Texto completo</label>
+                                    <textarea class="form-control" id="post-conteudo" rows="6" placeholder="Escreva seu texto aqui..."></textarea>
+                                </div>
+
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-spray">Publicar post</button>
+                                    <button type="button" class="btn btn-outline-light" onclick="irParaSecao('inicio')">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Barra lateral direita (4 colunas) -->
+            <aside class="col-lg-4">
+                <div class="d-flex flex-column gap-4">
+
+                    <!-- Card do autor -->
+                    <div class="card cartao-muro">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-3 mb-2">
+                                <div class="avatar-iniciais" style="width: 46px; height: 46px; font-size: 0.95rem;">GS</div>
+                                <div>
+                                    <h2 class="h6 text-white mb-0">Gabriel Souza</h2>
+                                    <small class="text-secondary">Estudante &bull; Dev iniciante</small>
+                                </div>
+                            </div>
+                            <p class="small mb-3">
+                                Escrevo sobre o que estou aprendendo no curso, compartilho músicas e guardo fotos da rotina.
+                            </p>
+                            <button type="button" class="btn btn-outline-info btn-sm w-100" onclick="irParaSecao('historia')">
+                                História do criador
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Navegacao rapida e filtro de categorias (list-group) -->
+                    <div class="card cartao-muro">
+                        <div class="card-header">Categorias e Atalhos</div>
+                        <div class="list-group list-group-flush grupo-lista-muro">
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center ativo-filtro" data-filtro="Todos" onclick="aplicarFiltro('Todos'); return false;">
+                                Todos os posts
+                                <span class="badge bg-secondary" id="badge-todos">0</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-filtro="Tecnologia" onclick="aplicarFiltro('Tecnologia'); return false;">
+                                Tecnologia
+                                <span class="badge bg-secondary" id="badge-Tecnologia">0</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-filtro="Música" onclick="aplicarFiltro('Música'); return false;">
+                                Música
+                                <span class="badge bg-secondary" id="badge-Música">0</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-filtro="Rotina" onclick="aplicarFiltro('Rotina'); return false;">
+                                Rotina
+                                <span class="badge bg-secondary" id="badge-Rotina">0</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action" style="color: #fb923c;" onclick="irParaSecao('musicas'); return false;">
+                                Músicas favoritas &rarr;
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action" style="color: #38bdf8;" onclick="irParaSecao('fotos'); return false;">
+                                Galeria de fotos &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card Redes Sociais -->
+                    <div class="card cartao-muro">
+                        <div class="card-header">Redes Sociais</div>
+                        <div class="card-body d-flex flex-column gap-2">
+                            <a href="https://www.instagram.com/glsvalt_9?dmpr=aDd5czJld2ExeGFo" target="_blank" rel="noopener noreferrer" class="link-rede">
+                                <span>Instagram</span>
+                                <small class="text-secondary">@glsvalt_9</small>
+                            </a>
+                            <a href="https://github.com/gls387748valt" target="_blank" rel="noopener noreferrer" class="link-rede">
+                                <span>GitHub</span>
+                                <small class="text-secondary">github.com/gls387748valt</small>
+                            </a>
+                            <a href="https://youtube.com/@gabriel-1387?si=u2NJSEYHAWPCyer8" target="_blank" rel="noopener noreferrer" class="link-rede">
+                                <span>YouTube</span>
+                                <small class="text-secondary">@gabriel-1387</small>
+                            </a>
+                            <a href="https://open.spotify.com/user/31t3n663a3bbk3w2re2wcqhby64m?si=hSfAzzleQlWfSQryqkZjCA&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="link-rede">
+                                <span>Spotify</span>
+                                <small class="text-secondary">Perfil no Spotify</small>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Rodape -->
+    <footer class="py-3 mt-auto">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 small">
+            <span>MURO.DEV &mdash; Blog do Gabriel</span>
+            <span>Feito com HTML, CSS, JavaScript e Bootstrap 5</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Dados iniciais de posts em portugues simples e direto
+        const POSTS_INICIAIS = [
+            {
+                id: 1,
+                titulo: "Como organizei este blog com grid do Bootstrap",
+                categoria: "Tecnologia",
+                data: "21/11/2026",
+                resumo: "Anotações de como usar col-lg-8 e col-lg-4 para separar os textos da barra lateral sem quebrar no celular.",
+                conteudo: "Quando comecei a montar essa página, a ideia era ter uma coluna maior para ler os textos e outra do lado para filtros, perfil e links.\n\nCom a grade do Bootstrap, colocar col-lg-8 e col-lg-4 dentro de uma row resolveu a divisão em telas maiores. No celular, as colunas empilham sozinhas, o que facilita bastante na hora de ler.\n\nPara não ficar tudo com cara de página padrão, misturei fundo escuro com bordas marcadas e cores em azul e laranja."
+            },
+            {
+                id: 2,
+                titulo: "Playlist que ajuda quando o código não quer rodar",
+                categoria: "Música",
+                data: "15/11/2026",
+                resumo: "Trocar música agitada por batidas mais calmas ajuda a manter a cabeça fria quando aparece um erro bobo.",
+                conteudo: "Tem dia que você passa vinte minutos procurando o motivo de um layout estar torto e o erro era só uma classe digitada errado.\n\nNesses momentos, ouvir som mais tranquilo ou rap nacional mais cadenciado me ajuda a respirar e ler o código com calma em vez de sair mudando tudo de qualquer jeito."
+            },
+            {
+                id: 3,
+                titulo: "Separando tempo de aula, trabalho e descanso",
+                categoria: "Rotina",
+                data: "06/11/2026",
+                resumo: "O que deu certo para não acumular exercício de última hora durante a semana.",
+                conteudo: "Deixar tudo para domingo à noite sempre me deixava corrido na segunda de manhã.\n\nO que tem funcionado melhor é fazer pelo menos trinta minutos de revisão logo depois da aula, ainda com o assunto fresco, e deixar um tempo livre no fim da semana para descansar mesmo."
+            }
+        ];
+
+        // Dados iniciais de musicas favoritas
+        const MUSICAS_INICIAIS = [
+            {
+                titulo: "A Vida é Desafio",
+                artista: "Racionais MC's",
+                nota: "Clássico que nunca sai da lista"
+            },
+            {
+                titulo: "Eduardo e Mônica",
+                artista: "Legião Urbana",
+                nota: "Boa para ouvir sem pressa"
+            },
+            {
+                titulo: "Céu Azul",
+                artista: "Charlie Brown Jr.",
+                nota: "Sempre toca no caminho de casa"
+            },
+            {
+                titulo: "Night Owl",
+                artista: "Broke For Free",
+                nota: "Trilha tranquila para revisar código"
+            }
+        ];
+
+        
+        const FOTOS_INICIAIS = [
+            {
+                id: 1,
+                src: "https://picsum.photos/seed/gabrieldesk1/600/400",
+                legenda: "Canto de estudos à noite",
+                data: "18/11/2026",
+                fallbackLabel: "Mesa de Estudos"
+            },
+            {
+                id: 2,
+                src: "https://picsum.photos/seed/gabriellab2/600/400",
+                legenda: "Bancada na aula de hardware",
+                data: "11/11/2026",
+                fallbackLabel: "Aula de Hardware"
+            },
+            {
+                id: 3,
+                src: "https://picsum.photos/seed/gabrielfone3/600/400",
+                legenda: "Fone no intervalo da escola",
+                data: "03/11/2026",
+                fallbackLabel: "Intervalo e Música"
+            },
+            {
+                id: 4,
+                src: "https://picsum.photos/seed/gabrielrua4/600/400",
+                legenda: "Fim de tarde voltando para casa",
+                data: "27/10/2026",
+                fallbackLabel: "Fim de Tarde"
+            }
+        ];
+
+        let posts = carregarEstado("muro_dev_posts_v1", POSTS_INICIAIS);
+        let musicas = carregarEstado("muro_dev_musicas_v1", MUSICAS_INICIAIS);
+        let fotos = carregarEstado("muro_dev_fotos_v1", FOTOS_INICIAIS, true);
+        let filtroAtual = "Todos";
+
+        function carregarEstado(chave, padrao, permitirVazio = false) {
+            try {
+                const salvo = localStorage.getItem(chave);
+                if (salvo) {
+                    const parsed = JSON.parse(salvo);
+                    if (Array.isArray(parsed) && (permitirVazio || parsed.length > 0)) return parsed;
+                }
+            } catch (e) {
+                // Caso localStorage esteja bloqueado no navegador
+            }
+            return padrao.slice();
+        }
+
+        function salvarEstado(chave, valor) {
+            try {
+                localStorage.setItem(chave, JSON.stringify(valor));
+            } catch (e) {
+                alert("Não foi possível salvar no navegador (limite de armazenamento atingido). Tente uma imagem menor.");
+            }
+        }
+
+        function escaparHTML(texto) {
+            const div = document.createElement("div");
+            div.textContent = texto || "";
+            return div.innerHTML;
+        }
+
+        function dataHojeFormatada() {
+            const agora = new Date();
+            const dia = String(agora.getDate()).padStart(2, "0");
+            const mes = String(agora.getMonth() + 1).padStart(2, "0");
+            const ano = agora.getFullYear();
+            return dia + "/" + mes + "/" + ano;
+        }
+
+        function classeCategoria(categoria) {
+            if (categoria === "Tecnologia") return "tag-tec";
+            if (categoria === "Música") return "tag-musica";
+            return "tag-rotina";
+        }
+
+        function atualizarBadgesContagem() {
+            document.getElementById("badge-todos").textContent = posts.length;
+            ["Tecnologia", "Música", "Rotina"].forEach(function(cat) {
+                const total = posts.filter(function(p) { return p.categoria === cat; }).length;
+                const el = document.getElementById("badge-" + cat);
+                if (el) el.textContent = total;
+            });
+        }
+
+        function renderizarFeed() {
+            const feed = document.getElementById("feed-posts");
+            const lista = filtroAtual === "Todos"
+                ? posts
+                : posts.filter(function(p) { return p.categoria === filtroAtual; });
+
+            if (lista.length === 0) {
+                feed.innerHTML = `
+                    <div class="card cartao-muro">
+                        <div class="card-body p-4 text-center">
+                            <p class="mb-3">Ainda não há posts nessa categoria.</p>
+                            <button type="button" class="btn btn-spray btn-sm" onclick="aplicarFiltro('Todos')">Ver todos os posts</button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            feed.innerHTML = lista.map(function(post) {
+                return `
+                    <article class="card cartao-muro">
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <span class="badge ${classeCategoria(post.categoria)}">${escaparHTML(post.categoria)}</span>
+                                <small class="text-secondary">${escaparHTML(post.data)}</small>
+                            </div>
+                            <h2 class="h4 text-white mb-2">${escaparHTML(post.titulo)}</h2>
+                            <p class="text-light mb-3">${escaparHTML(post.resumo)}</p>
+                            <button type="button" class="btn btn-spray btn-sm" onclick="abrirArtigo(${post.id})">Ler texto completo</button>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        function abrirArtigo(id) {
+            const post = posts.find(function(p) { return p.id === id; });
+            if (!post) return;
+
+            document.getElementById("artigo-badge").className = "badge " + classeCategoria(post.categoria);
+            document.getElementById("artigo-badge").textContent = post.categoria;
+            document.getElementById("artigo-meta").textContent = "Publicado em " + post.data + " por Gabriel Souza";
+            document.getElementById("artigo-titulo").textContent = post.titulo;
+
+            const corpo = document.getElementById("artigo-corpo");
+            corpo.innerHTML = post.conteudo
+                .split("\n")
+                .map(function(linha) { return linha.trim(); })
+                .filter(function(linha) { return linha.length > 0; })
+                .map(function(linha) { return "<p>" + escaparHTML(linha) + "</p>"; })
+                .join("");
+
+            esconderTodasViews();
+            document.getElementById("view-leitura").classList.remove("d-none");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function aplicarFiltro(categoria) {
+            filtroAtual = categoria;
+
+            document.querySelectorAll(".grupo-lista-muro [data-filtro]").forEach(function(item) {
+                if (item.getAttribute("data-filtro") === categoria) {
+                    item.classList.add("ativo-filtro");
+                } else {
+                    item.classList.remove("ativo-filtro");
+                }
+            });
+
+            const aviso = document.getElementById("aviso-filtro");
+            if (categoria === "Todos") {
+                aviso.classList.add("d-none");
+                aviso.classList.remove("d-flex");
+            } else {
+                document.getElementById("nome-filtro-ativo").textContent = categoria;
+                aviso.classList.remove("d-none");
+                aviso.classList.add("d-flex");
+            }
+
+            irParaSecao("inicio");
+            renderizarFeed();
+        }
+
+        function renderizarMusicas() {
+            const container = document.getElementById("lista-musicas");
+            container.innerHTML = musicas.map(function(m) {
+                return `
+                    <div class="faixa-item p-3">
+                        <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2">
+                            <strong class="text-white">${escaparHTML(m.titulo)}</strong>
+                            <span class="small" style="color: #fdba74;">${escaparHTML(m.artista)}</span>
+                        </div>
+                        ${m.nota ? `<div class="small text-secondary mt-1">${escaparHTML(m.nota)}</div>` : ""}
+                    </div>
+                `;
+            }).join("");
+        }
+
+        // Gera um SVG simples embutido como fallback caso a imagem nao carregue
+        function criarFallbackSVG(rotulo) {
+            const textoLimpo = (rotulo || "Foto").replace(/[<>&"]/g, "");
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+                <rect width="600" height="400" fill="#27272a"/>
+                <rect x="18" y="18" width="564" height="364" fill="none" stroke="#52525b" stroke-width="2" stroke-dasharray="8 6"/>
+                <text x="300" y="190" text-anchor="middle" fill="#38bdf8" font-family="sans-serif" font-size="22" font-weight="bold">${textoLimpo}</text>
+                <text x="300" y="224" text-anchor="middle" fill="#a1a1aa" font-family="sans-serif" font-size="14">Imagem indisponível no momento</text>
+            </svg>`;
+            return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+        }
+
+        function renderizarFotos() {
+            const galeria = document.getElementById("galeria-fotos");
+
+            if (fotos.length === 0) {
+                galeria.innerHTML = `
+                    <div class="col-12">
+                        <div class="p-4 text-center border border-secondary rounded bg-dark">
+                            <p class="small text-secondary mb-0">Nenhuma foto na galeria. Use o formulário abaixo para adicionar.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            galeria.innerHTML = fotos.map(function(foto, idx) {
+                return `
+                    <div class="col-md-6">
+                        <div class="foto-moldura h-100 d-flex flex-column">
+                            <img id="img-foto-${idx}" src="${escaparHTML(foto.src)}" alt="${escaparHTML(foto.legenda)}">
+                            <div class="p-3 mt-auto d-flex justify-content-between align-items-start gap-2">
+                                <div>
+                                    <div class="fw-bold text-white small">${escaparHTML(foto.legenda)}</div>
+                                    <div class="text-secondary" style="font-size: 0.78rem;">${escaparHTML(foto.data)}</div>
+                                </div>
+                                <button type="button" class="btn btn-outline-danger btn-sm py-0 px-2" onclick="apagarFoto(${foto.id})" title="Apagar foto">
+                                    Apagar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            
+            fotos.forEach(function(foto, idx) {
+                const img = document.getElementById("img-foto-" + idx);
+                if (img) {
+                    img.onerror = function() {
+                        img.onerror = null;
+                        img.src = criarFallbackSVG(foto.fallbackLabel || foto.legenda);
+                    };
+                }
+            });
+        }
+
+        function apagarFoto(id) {
+            fotos = fotos.filter(function(f) { return f.id !== id; });
+            salvarEstado("muro_dev_fotos_v1", fotos);
+            renderizarFotos();
+        }
+
+        function restaurarFotosPadrao() {
+            fotos = FOTOS_INICIAIS.slice();
+            salvarEstado("muro_dev_fotos_v1", fotos);
+            renderizarFotos();
+        }
+
+        
+        function lerEComprimirImagem(arquivo, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const maxLargura = 900;
+                    let largura = img.width;
+                    let altura = img.height;
+
+                    if (largura > maxLargura) {
+                        altura = Math.round((altura * maxLargura) / largura);
+                        largura = maxLargura;
+                    }
+
+                    const canvas = document.createElement("canvas");
+                    canvas.width = largura;
+                    canvas.height = altura;
+                    const ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0, largura, altura);
+
+                    callback(canvas.toDataURL("image/jpeg", 0.8));
+                };
+                img.onerror = function() {
+                    callback(e.target.result);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(arquivo);
+        }
+
+        function esconderTodasViews() {
+            ["inicio", "leitura", "historia", "musicas", "fotos", "novo"].forEach(function(nome) {
+                const secao = document.getElementById("view-" + nome);
+                if (secao) secao.classList.add("d-none");
+            });
+        }
+
+        function irParaSecao(nome) {
+            esconderTodasViews();
+
+            const alvo = document.getElementById("view-" + nome);
+            if (alvo) alvo.classList.remove("d-none");
+
+            document.querySelectorAll("#menuPrincipal .nav-link").forEach(function(link) {
+                link.classList.remove("active");
+            });
+
+            const linkAtivo = document.getElementById("nav-" + nome);
+            if (linkAtivo) linkAtivo.classList.add("active");
+
+            if (nome === "novo") {
+                document.getElementById("alerta-post").classList.add("d-none");
+            }
+            if (nome === "fotos") {
+                document.getElementById("alerta-foto").classList.add("d-none");
+            }
+
+            
+            const menuEl = document.getElementById("menuPrincipal");
+            if (menuEl && menuEl.classList.contains("show") && window.bootstrap) {
+                const instancia = bootstrap.Collapse.getInstance(menuEl);
+                if (instancia) instancia.hide();
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        
+        document.getElementById("form-novo-post").addEventListener("submit", function(evento) {
+            evento.preventDefault();
+
+            const titulo = document.getElementById("post-titulo").value.trim();
+            const categoria = document.getElementById("post-categoria").value;
+            const resumo = document.getElementById("post-resumo").value.trim();
+            const conteudo = document.getElementById("post-conteudo").value.trim();
+            const alerta = document.getElementById("alerta-post");
+
+            if (!titulo || !resumo || !conteudo) {
+                alerta.classList.remove("d-none");
+                return;
+            }
+
+            alerta.classList.add("d-none");
+
+            posts.unshift({
+                id: Date.now(),
+                titulo: titulo,
+                categoria: categoria,
+                data: dataHojeFormatada(),
+                resumo: resumo,
+                conteudo: conteudo
+            });
+
+            salvarEstado("muro_dev_posts_v1", posts);
+            document.getElementById("form-novo-post").reset();
+            atualizarBadgesContagem();
+            aplicarFiltro("Todos");
+        });
+
+        // Adicionar nova musica
+        document.getElementById("form-musica").addEventListener("submit", function(evento) {
+            evento.preventDefault();
+
+            const tituloInput = document.getElementById("input-musica-titulo");
+            const artistaInput = document.getElementById("input-musica-artista");
+            const notaInput = document.getElementById("input-musica-nota");
+
+            const titulo = tituloInput.value.trim();
+            const artista = artistaInput.value.trim();
+            const nota = notaInput.value.trim();
+
+            if (!titulo || !artista) return;
+
+            musicas.unshift({
+                titulo: titulo,
+                artista: artista,
+                nota: nota
+            });
+
+            salvarEstado("muro_dev_musicas_v1", musicas);
+            document.getElementById("form-musica").reset();
+            renderizarMusicas();
+        });
+
+        // Adicionar nova foto (via arquivo ou URL)
+        document.getElementById("form-foto").addEventListener("submit", function(evento) {
+            evento.preventDefault();
+
+            const arquivoInput = document.getElementById("input-foto-arquivo");
+            const urlInput = document.getElementById("input-foto-url");
+            const legendaInput = document.getElementById("input-foto-legenda");
+            const alerta = document.getElementById("alerta-foto");
+
+            const arquivo = arquivoInput.files && arquivoInput.files[0];
+            const url = urlInput.value.trim();
+            const legenda = legendaInput.value.trim();
+
+            if ((!arquivo && !url) || !legenda) {
+                alerta.classList.remove("d-none");
+                return;
+            }
+
+            alerta.classList.add("d-none");
+
+            function finalizarCadastroFoto(srcFinal) {
+                fotos.unshift({
+                    id: Date.now(),
+                    src: srcFinal,
+                    legenda: legenda,
+                    data: dataHojeFormatada(),
+                    fallbackLabel: legenda
+                });
+
+                salvarEstado("muro_dev_fotos_v1", fotos);
+                document.getElementById("form-foto").reset();
+                renderizarFotos();
+            }
+
+            if (arquivo) {
+                lerEComprimirImagem(arquivo, finalizarCadastroFoto);
+            } else {
+                finalizarCadastroFoto(url);
+            }
+        });
+
+        // Inicializacao
+        atualizarBadgesContagem();
+        renderizarFeed();
+        renderizarMusicas();
+        renderizarFotos();
+    </script>
+</body>
+</html>
